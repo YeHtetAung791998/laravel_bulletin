@@ -1,6 +1,0 @@
-version: 2
-frontend:
-  builders:
-    - use: railwayapp/python-requests
-frontend:
-  main: php artisan migrate --force

@@ -13,6 +13,11 @@ class UserDao implements UserDaoInterface
    
     public function saveUser(Request $request)
     {
+        $user = User::where('email', $request['email'])
+        ->whereNotNull('deleted_at');
+        if($user) {
+            $user->forceDelete();
+        }
         $profileName = session('uploadProfile')??'';
         $user = new User();
         $user->name = $request['name'];

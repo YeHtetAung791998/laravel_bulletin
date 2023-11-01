@@ -95,8 +95,10 @@ class RegisterController extends Controller
     {
         $result = $request->validated();
         $name = $request->file('profile')->getClientOriginalName();
-        $fileName =time(). Auth::user()->id . '.' . $request->file('profile')->getClientOriginalExtension();
-        $request->file('profile')->storeAs('public/images/',$fileName);
+        // $fileName =time(). Auth::user()->id . '.' . $request->file('profile')->getClientOriginalExtension();
+        // $request->file('profile')->storeAs('public/images/',$fileName);
+        $fileName = $request->file('profile')->store('images');
+        // dd($fileName);
         session(['ProfileName' => $name]);
         session(['uploadProfile' => $fileName]);
         return redirect()

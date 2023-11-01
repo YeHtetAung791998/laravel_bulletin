@@ -27,11 +27,6 @@ class PostController extends Controller
     //show all posts
     public function index()
     {
-       
-
-        File::link(
-            storage_path('app/public'), public_path('storage')
-        );
         session()->forget('filteredPostList');
         $postList = $this->postInterface->getAllPosts();
         return view('post.list',compact('postList'));

@@ -129,8 +129,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <!-- <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" /> -->
-                                <img style="height: 200px; width: 200px;" class="mt-2" src="/storage/{{ session('uploadProfile') }}" />
+                                <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" />
+                                <!-- <img style="height: 200px; width: 200px;" class="mt-2" src="/storage/{{ session('uploadProfile') }}" /> -->
                             </div>
                         </div>
                         <div class="row mb-0">

@@ -82,7 +82,7 @@ class RegisterController extends Controller
     // }
 
     //show register form
-    public function showRegister() 
+    public function showRegister()
     {
         if (Storage::disk('public')->exists('images/' . session('uploadProfile'))) {
             Storage::disk('public')->delete('images/' . session('uploadProfile'));
@@ -95,29 +95,27 @@ class RegisterController extends Controller
     {
         $result = $request->validated();
         $name = $request->file('profile')->getClientOriginalName();
-        // $fileName =time(). Auth::user()->id . '.' . $request->file('profile')->getClientOriginalExtension();
-        // $request->file('profile')->storeAs('public/images/',$fileName);
-        $fileName = $request->file('profile')->store('images');
-        // dd($fileName);
+        $fileName = time() . Auth::user()->id . '.' . $request->file('profile')->getClientOriginalExtension();
+        $request->file('profile')->storeAs('public/images/', $fileName);
         session(['ProfileName' => $name]);
         session(['uploadProfile' => $fileName]);
         return redirect()
-        ->route('registerconfirm')
-        ->withInput();
+            ->route('registerconfirm')
+            ->withInput();
     }
 
     public function showRegisterConfirm()
     {
         if (old()) {
             return view('auth.register-confirm');
-          }
+        }
     }
 
     public function submitRegisterConfirm(Request $request)
     {
         $this->userInterface->saveUser($request);
         return redirect()
-        ->route('userlist');
+            ->route('userlist');
     }
 
     public function showSignup()
@@ -135,13 +133,12 @@ class RegisterController extends Controller
                 $request->session()->put('auth.password_confirmed_at', time());
                 Toastr::success('Sign up successfully');
                 return redirect()
-                ->route('postlist'); 
+                    ->route('postlist');
             }
         } else {
             Toastr::error('Sign up failed');
             return redirect()
-            ->route('postlist');
+                ->route('postlist');
         }
-       
     }
 }

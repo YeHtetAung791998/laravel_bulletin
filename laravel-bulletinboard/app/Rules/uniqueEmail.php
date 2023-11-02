@@ -17,9 +17,9 @@ class uniqueEmail implements ValidationRule
     {
         $user = $user = DB::table('users')
         ->where('email', $value)
-        ->whereNotNull('deleted_at')
+        ->whereNull('deleted_at')
         ->first();
-        if (!$user) {
+        if ($user) {
             $fail("The $attribute is invalid.");
         }
     }

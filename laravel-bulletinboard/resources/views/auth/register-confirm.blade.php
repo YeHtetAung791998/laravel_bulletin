@@ -65,15 +65,8 @@
                             <label for="type" class="col-md-4 col-form-label text-md-end">{{ __('Type') }}</label>
              
                             <div class="col-md-3">
-                            <select class="form-select @error('type') is-invalid @enderror"  name="type"  aria-label="Default select example">
-                            <option value="0" {{ old('type') == '0' ? 'selected' : '' }}>Admin</option>
-                            <option value="1" {{ old('type') == '1' ? 'selected' : '' }}>User</option>
-                            </select>
-                            @error('type')
-                                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <input readonly id="text" type="hidden" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autocomplete="email">
+                             <span class="form-control">{{old('type') == '0' ? 'Admin':'User'}}</span>
                             </div>
                         </div>
 
@@ -130,7 +123,6 @@
                                     </span>
                                 @enderror
                                 <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" />
-                                <!-- <img style="height: 200px; width: 200px;" class="mt-2" src="/storage/{{ session('uploadProfile') }}" /> -->
                             </div>
                         </div>
                         <div class="row mb-0">

@@ -43,6 +43,7 @@
                             <label for="type" class="col-md-4 col-form-label text-md-end">{{ __('Type') }}</label>
              
                             <div class="col-md-3">
+                            @if($user->type == '0')           
                             <select class="form-select @error('type') is-invalid @enderror"  name="type" aria-label="Default select example">
                             <option value="0" {{ $user->type == '0' ? 'selected' : '' }}>Admin</option>
                             <option value="1" {{ $user->type == '1' ? 'selected' : '' }}>User</option>
@@ -52,6 +53,10 @@
                                 <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                            @else
+                            <input readonly id="text" type="hidden" class="form-control @error('type') is-invalid @enderror" name="type" value="{{$user->type}}" required autocomplete="email">
+                             <span class="form-control">{{$user->type == '0' ? 'Admin':'User'}}</span>
+                            @endif
                             </div>
                         </div>
 

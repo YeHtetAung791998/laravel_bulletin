@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Services\Post\PostServiceInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,8 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    private $postInterface;
+    public function __construct(PostServiceInterface $postServiceInterface)
     {
+        $this->postInterface = $postServiceInterface;
         $this->middleware('auth');
     }
 
@@ -21,8 +24,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        session()->forget('filteredPostList');
+        $postList = $this->postInterface->getAllPosts($request);
+        return view('post.list', compact('postList'));
     }
 }

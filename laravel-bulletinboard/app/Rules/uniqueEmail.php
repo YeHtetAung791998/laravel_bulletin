@@ -20,7 +20,7 @@ class uniqueEmail implements ValidationRule
         ->whereNull('deleted_at')
         ->first();
         if ($user) {
-            $fail("The $attribute is invalid.");
+            $fail("The $attribute is duplicated.");
         }
     }
 }

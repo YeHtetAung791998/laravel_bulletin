@@ -26,10 +26,10 @@ class PostController extends Controller
         $this->postInterface = $postServiceInterface;
     }
     //show all posts
-    public function index()
+    public function index(Request $request)
     {
         session()->forget('filteredPostList');
-        $postList = $this->postInterface->getAllPosts();
+        $postList = $this->postInterface->getAllPosts($request);
         return view('post.list', compact('postList'));
     }
 
@@ -163,6 +163,25 @@ class PostController extends Controller
         // Read the uploaded CSV file
         $csv = array_map('str_getcsv', file($request->file('csv_file')->getRealPath()));
 
+        $requiredHeaders = ['title', 'description', 'status'];
+
+        // Initialize an array to store missing header names
+        $missingHeaders = [];
+    
+        // Ensure that the CSV headers contain the required columns
+        $headers = array_map('strtolower', $csv[0]);
+        
+        foreach ($requiredHeaders as $header) {
+            if (!in_array($header, $headers)) {
+                $missingHeaders[] = ucfirst($header);
+            }
+        }
+    
+        if (!empty($missingHeaders)) {
+            $missingHeadersString = implode(' and ', $missingHeaders);
+            Toastr::error($missingHeadersString . ' is required in CSV header.');
+            return view('post.upload');
+        }
         // Calculate the column count (assuming the first row contains headers)
         $columnCount = count($csv[0]);
         if ($columnCount < 3 || $columnCount > 3) {

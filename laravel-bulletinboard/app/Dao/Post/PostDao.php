@@ -20,8 +20,12 @@ class PostDao implements PostDaoInterface
         return $post;
     }
 
-    public function getAllPosts()
+    public function getAllPosts(Request $request)
     {
+        $pagesize = 5;
+        if($request['page_size']){
+            $pagesize = $request['page_size'];
+        }
         $posts = DB::table('posts as post')
         ->join('users as created_user', 'post.created_user_id', '=', 'created_user.id')
         ->join('users as updated_user', 'post.updated_user_id', '=', 'updated_user.id')
@@ -38,7 +42,7 @@ class PostDao implements PostDaoInterface
             }
         })
         ->whereNull('post.deleted_at')
-        ->paginate(5);
+        ->paginate($pagesize);
       return $posts;
     }
 
@@ -72,6 +76,10 @@ class PostDao implements PostDaoInterface
 
     public function searchPost(Request $request)
     {
+        $pagesize = 5;
+        if($request['page_size']){
+            $pagesize = $request['page_size'];
+        }
         $keyword = $request['keyword'];
         $posts = DB::table('posts as post')
         ->join('users as created_user', 'post.created_user_id', '=', 'created_user.id')
@@ -95,7 +103,7 @@ class PostDao implements PostDaoInterface
             }
         })
         ->whereNull('post.deleted_at')
-        ->paginate(5);
+        ->paginate($pagesize);
          return $posts;
     }
     

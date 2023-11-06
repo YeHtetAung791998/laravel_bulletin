@@ -20,9 +20,9 @@ class PostService implements PostServiceInterface
         return $this->postDao->savePost($request);
     }
 
-    public function getAllPosts()
+    public function getAllPosts(Request $request)
     {
-        return $this->postDao->getAllPosts();
+        return $this->postDao->getAllPosts($request);
     }
 
     public function getPostById($id)

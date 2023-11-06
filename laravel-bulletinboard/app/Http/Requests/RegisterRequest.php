@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
             'type' => ['required'],
             'phone' => ['max:20'],
             'address' => ['max:255'],
-            'dob' => []
+            'dob' => ['required']
           ];
     }
 }

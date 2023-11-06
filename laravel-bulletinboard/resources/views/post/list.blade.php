@@ -66,9 +66,24 @@
             </tbody>
           </table>
           </div>
-          <div class="d-flex justify-content-end">
-          {{ $postList->links() }}
-          </div>
+          <div class="d-flex justify-content-between">
+        <div class="d-flex gap-3">
+      <form action="{{ route('postlist') }}" method="GET" class="form-inline justify-content-end">
+    <label for="page_size">Page Size:</label>
+    <select name="page_size" id="page_size"  onchange="this.form.submit()">
+        <option value="5" {{ request('page_size') == 5 ? 'selected' : '' }}>5</option>
+        <option value="10" {{ request('page_size') == 10 ? 'selected' : '' }}>10</option>
+        <option value="15" {{ request('page_size') == 15 ? 'selected' : '' }}>15</option>
+    </select>
+        </form>
+        <div class="text-center">
+          Showing {{ $postList->firstItem() }} to {{ $postList->lastItem() }} of {{ $postList->total() }} entries
+        </div>
+      </div>
+        <div class="d-flex justify-content-end">
+        {{ $postList->appends(['page_size' => request('page_size')])->links() }}
+        </div>
+      </div>
         </div>
         </div>
     </div>

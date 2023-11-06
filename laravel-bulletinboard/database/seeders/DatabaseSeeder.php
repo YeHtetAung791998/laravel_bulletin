@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
               'email' => 'scm.yehtetaung@gmail.com',
               'password' => Hash::make('password'),
               'profile' => '1588646773.png',
+              'dob' => '2023-11-22',
               'type' => '0',
               'created_user_id' => 1,
               'updated_user_id' => 1,

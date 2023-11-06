@@ -7,7 +7,7 @@ interface PostDaoInterface
 {
     public function savePost(Request $request);
 
-    public function getAllPosts();
+    public function getAllPosts(Request $request);
 
     public function getPostById($id);
 

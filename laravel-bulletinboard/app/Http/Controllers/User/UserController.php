@@ -22,14 +22,18 @@ class UserController extends Controller
         // $this->middleware('guest');
         $this->userInterface = $userServiceInterface;
     }
-    public function index()
+    public function index(Request $request)
     {
+        $pagesize = 5;
+        if($request['page_size']){
+            $pagesize = $request['page_size'];
+        }
         $userList = DB::table('users as user')
             ->join('users as created_user', 'user.created_user_id', '=', 'created_user.id')
             ->join('users as updated_user', 'user.updated_user_id', '=', 'updated_user.id')
             ->select('user.*', 'created_user.name as created_user', 'updated_user.name as updated_user')
             ->whereNull('user.deleted_at')
-            ->paginate(5);
+            ->Paginate($pagesize);
         return view('user.list', compact('userList'));
     }
 
@@ -112,7 +116,10 @@ class UserController extends Controller
 
     public function searchUser(Request $request)
     {
-
+        $pagesize = 5;
+        if($request['page_size']){
+            $pagesize = $request['page_size'];
+        }
         $name = $request->input('name');
         $email = $request->input('email');
         $from = $request->input('from');
@@ -131,7 +138,7 @@ class UserController extends Controller
             ->when(!empty($from) && !empty($to), function ($query) use ($from, $to) {
                 return $query->whereBetween('user.created_at', [$from, $to]);
             })
-            ->paginate(5);
+            ->paginate($pagesize);
         return view('user.list', compact('userList'));
     }
 

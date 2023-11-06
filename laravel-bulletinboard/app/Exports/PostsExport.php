@@ -63,11 +63,12 @@ class PostsExport implements FromCollection,WithHeadings,WithMapping
     public function map($post): array
     {
         $deletedAt = $post->deleted_at ? date('Y/m/d', strtotime($post->deleted_at)) : '';
+        $status = $post->status == '0'?'Inactive': 'Active';
         return [
             $post->id,
             $post->title, 
             $post->description, 
-            (string)$post->status,
+            $status,
             $post->created_user_id,
             $post->updated_user_id,
             $post->deleted_user_id,

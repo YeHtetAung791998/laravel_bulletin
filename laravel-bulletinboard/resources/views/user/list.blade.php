@@ -114,7 +114,7 @@
         </div>
       </div>
         <div class="d-flex justify-content-end">
-        {{ $userList->appends(['page_size' => request('page_size')])->links('pagination::bootstrap-5') }}
+        {{ $userList->appends(['page_size' => request('page_size')])->links() }}
         </div>
       </div>
 

@@ -81,8 +81,8 @@
         </div>
       </div>
         <div class="d-flex justify-content-end">
-        <!-- {{ $postList->appends(['page_size' => request('page_size')])->links() }} -->
-        {{ $postList->appends(['page_size' => request('page_size')])->links('pagination::bootstrap-5') }}
+        {{ $postList->appends(['page_size' => request('page_size')])->links() }}
+        
 
         </div>
       </div>

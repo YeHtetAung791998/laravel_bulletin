@@ -33,6 +33,7 @@ class UserController extends Controller
             ->join('users as updated_user', 'user.updated_user_id', '=', 'updated_user.id')
             ->select('user.*', 'created_user.name as created_user', 'updated_user.name as updated_user')
             ->whereNull('user.deleted_at')
+            ->orderBy('user.created_at','desc')
             ->Paginate($pagesize);
         return view('user.list', compact('userList'));
     }
@@ -129,6 +130,7 @@ class UserController extends Controller
             ->join('users as updated_user', 'user.updated_user_id', '=', 'updated_user.id')
             ->select('user.*', 'created_user.name as created_user', 'updated_user.name as updated_user')
             ->whereNull('user.deleted_at')
+            ->orderBy('user.created_at','desc')
             ->when(!empty($email), function ($query) use ($email) {
                 return $query->where('user.email', 'like', "%$email%");
             })

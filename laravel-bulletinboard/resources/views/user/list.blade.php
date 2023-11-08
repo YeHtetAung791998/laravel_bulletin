@@ -45,7 +45,7 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover table-bordered">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th class="header-cell" scope="col">No</th>
@@ -82,9 +82,9 @@
                 @else
                 <td class="align-middle">User</td>
                 @endif
-                <td class="align-middle">{{$user->phone??'not available'}}</td>
-                <td class="align-middle">{{$user->dob?date('Y/m/d', strtotime($user->dob)):'not available'}}</td>
-                <td class="align-middle">{{$user->address??'not available'}}</td>
+                <td class="align-middle">{{$user->phone??''}}</td>
+                <td class="align-middle">{{$user->dob?date('Y/m/d', strtotime($user->dob)):''}}</td>
+                <td class="align-middle">{{$user->address??''}}</td>
                 <td class="align-middle">{{date('Y/m/d', strtotime($user->created_at))}}</td>
                 <td class="align-middle">{{date('Y/m/d', strtotime($user->updated_at))}}</td>
                 @if($user->id != auth()->user()->id)
@@ -114,7 +114,7 @@
         </div>
       </div>
         <div class="d-flex justify-content-end">
-        {{ $userList->appends(['page_size' => request('page_size')])->links() }}
+        {{ $userList->appends(['page_size' => request('page_size')])->links('pagination::bootstrap-5') }}
         </div>
       </div>
 

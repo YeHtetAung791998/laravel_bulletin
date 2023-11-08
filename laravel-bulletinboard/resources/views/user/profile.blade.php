@@ -47,7 +47,9 @@
               <div class="row">
                 <label class="col-md-3 text-md-left">{{ __('Phone') }}</label>
                 <label class="col-md-9 text-md-left">
-                  <i class="profile-text">{{$user->phone??'not available'}}</i>
+                @if($user->phone)
+                  <i class="profile-text">{{$user->phone}}</i>
+                  @endif
                 </label>
               </div>
               <div class="row">
@@ -55,15 +57,15 @@
                 <label class="col-md-9 text-md-left">
                   @if($user->dob)
                   <i class="profile-text">{{date('Y/m/d', strtotime($user->dob))}}</i>
-                  @else
-                  <i class="profile-text">not available</i>
                   @endif
                 </label>
               </div>
               <div class="row">
                 <label class="col-md-3 text-md-left">{{ __('Address') }}</label>
                 <label class="col-md-9 text-md-left">
-                  <i class="profile-text">{{$user->address??'not available'}}</i>
+                 @if($user->address)
+                  <i class="profile-text">{{$user->address}}</i>
+                  @endif
                 </label>
               </div>
               <div class="pt-4">

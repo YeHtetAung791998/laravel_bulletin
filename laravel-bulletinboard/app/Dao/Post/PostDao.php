@@ -42,6 +42,7 @@ class PostDao implements PostDaoInterface
             }
         })
         ->whereNull('post.deleted_at')
+        ->orderBy('post.created_at', 'desc') 
         ->paginate($pagesize);
       return $posts;
     }
@@ -103,6 +104,7 @@ class PostDao implements PostDaoInterface
             }
         })
         ->whereNull('post.deleted_at')
+        ->orderBy('post.created_at', 'desc') 
         ->paginate($pagesize);
          return $posts;
     }

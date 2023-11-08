@@ -31,7 +31,7 @@
           </div>
         
       <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover">
             <thead>
               <tr>
                 <th class="header-cell" scope="col">Post Title</th>
@@ -49,11 +49,11 @@
             @else
             @foreach ($postList as $post)          
               <tr>
-                <td>
+                <td class="align-middle">
                   <a class="post-name" style="cursor: pointer;text-decoration:none;"  data-bs-toggle="modal" data-bs-target="#detailModal" onclick="showPostDetail({{json_encode($post)}})">{{$post->title}}</a>
-                <td>{{$post->description}}</td>
-                <td>{{$post->created_user}}</td>
-                <td>{{date('Y/m/d', strtotime($post->created_at))}}</td>
+                <td class="align-middle">{{$post->description}}</td>
+                <td class="align-middle">{{$post->created_user}}</td>
+                <td class="align-middle">{{date('Y/m/d', strtotime($post->created_at))}}</td>
                 @if(auth()->user() && (auth()->user()->type == 0 || auth()->user()->type == 1 && $post->created_user_id == auth()->user()->id))
                 <td class="d-sm-flex gap-2">
                   <a type="button" class="btn btn-primary btn-md" href="/post/edit/{{$post->id}}">Edit</a>
@@ -81,7 +81,9 @@
         </div>
       </div>
         <div class="d-flex justify-content-end">
-        {{ $postList->appends(['page_size' => request('page_size')])->links() }}
+        <!-- {{ $postList->appends(['page_size' => request('page_size')])->links() }} -->
+        {{ $postList->appends(['page_size' => request('page_size')])->links('pagination::bootstrap-5') }}
+
         </div>
       </div>
         </div>

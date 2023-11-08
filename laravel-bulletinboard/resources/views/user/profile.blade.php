@@ -13,10 +13,10 @@
         <div class="card-body p-5">
           <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-6 text-center">
-              @if(Storage::disk('public')->exists('images/' . $user->profile) && $user->profile)
-              <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/'. $user->profile) }}" />
+              @if(Storage::disk('public')->exists('profiles/' . $user->profile) && $user->profile)
+              <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/'. $user->profile) }}" />
               @else
-              <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/default-profile.jpg') }}" />
+              <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/default-profile.jpg') }}" />
               @endif
             </div>
             <div class="col-lg-8 col-md-12 col-sm-6">

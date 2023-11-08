@@ -96,7 +96,7 @@ class RegisterController extends Controller
         $result = $request->validated();
         $name = $request->file('profile')->getClientOriginalName();
         $fileName = time() . Auth::user()->id . '.' . $request->file('profile')->getClientOriginalExtension();
-        $request->file('profile')->storeAs('public/images/', $fileName);
+        $request->file('profile')->storeAs('public/profiles/', $fileName);
         session(['ProfileName' => $name]);
         session(['uploadProfile' => $fileName]);
         return redirect()
@@ -138,7 +138,7 @@ class RegisterController extends Controller
         } else {
             Toastr::error('Sign up failed');
             return redirect()
-                ->route('postlist');
+                ->route('postlist')->with('error','Sign up failed');
         }
     }
 }

@@ -14,7 +14,8 @@
           <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-6 text-center">
               @if(Storage::disk('public')->exists('profiles/' . $user->profile) && $user->profile)
-              <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/'. $user->profile) }}" />
+              <!-- <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/'. $user->profile) }}" /> -->
+              <img src="/storage/profiles/{{$user->profile}}" style="height: 150px; width: 150px;">
               @else
               <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/default-profile.jpg') }}" />
               @endif

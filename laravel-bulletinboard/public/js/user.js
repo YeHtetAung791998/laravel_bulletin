@@ -9,9 +9,11 @@ function showDeleteDetail(user) {
     }
     $("#user-delete #user-email").text(user.email);
     $("#user-delete #user-phone").text(user.phone);
-    $("#user-delete #user-dob").text(
-        moment(user.dob).format("YYYY/MM/DD")
-    );
+    if(user.dob) {
+        $("#user-delete #user-dob").text(
+            moment(user.dob).format("YYYY/MM/DD")
+        );
+    }
     $("#user-delete #user-address").text(user.address);
 }
 
@@ -24,23 +26,30 @@ function showUserDetail(user) {
     }
     $("#user-detail #user-email").text(user.email);
     $("#user-detail #user-phone").text(user.phone);
-    $("#user-detail #user-date-of-birth").text(
-        moment(user.dob).format("YYYY/MM/DD")
-    );
+    if(user.dob) {
+        $("#user-detail #user-date-of-birth").text(
+            moment(user.dob).format("YYYY/MM/DD")
+        );
+    }
+
     $("#user-detail #user-address").text(user.address);
-    $("#user-detail #user-created-at").text(
-        moment(user.created_at).format("YYYY/MM/DD")
-    );
+    if(user.created_at) {
+        $("#user-detail #user-created-at").text(
+            moment(user.created_at).format("YYYY/MM/DD")
+        );
+    }
     $("#user-detail #user-created-user").text(user.created_user);
-    $("#user-detail #user-updated-at").text(
-        moment(user.updated_at).format("YYYY/MM/DD")
-    );
+    if(user.updated_at) {
+        $("#user-detail #user-updated-at").text(
+            moment(user.updated_at).format("YYYY/MM/DD")
+        );
+    }
     $("#user-detail #user-updated-user").text(user.updated_user);
     let profile="default-profile.jpg";
     if(user.profile)
     {
         profile = user.profile;
     }
-    $("#user-detail #user-profile").attr("src", `/storage/profiles/${profile}`);
+    $("#user-detail #user-profile").attr("src", `/storage/images/${profile}`);
 }
 

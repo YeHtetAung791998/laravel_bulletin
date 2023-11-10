@@ -14,11 +14,11 @@
                             toastr.options = {
                                 closeButton: true,
                                 progressBar: true,
-                                positionClass: 'toast-top-right'
+                                positionClass: 'toast-top-center'
                             };
                          toastr[type](message);
                       }
-                  showToastrMessage('info', "{{ session('status') }}");
+                  showToastrMessage('success', "{{ session('status') }}");
                   </script>
                     @endif
 

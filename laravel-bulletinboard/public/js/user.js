@@ -50,6 +50,6 @@ function showUserDetail(user) {
     {
         profile = user.profile;
     }
-    $("#user-detail #user-profile").attr("src", `/storage/images/${profile}`);
+    $("#user-detail #user-profile").attr("src", `/storage/profiles/${profile}`);
 }
 

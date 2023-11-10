@@ -13,7 +13,7 @@
         <div class="card-body p-5">
           <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-6 text-center">
-            <!-- <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/'. $user->profile) }}" /> --> -->
+            <!-- <img style="height: 150px; width: 150px;"  src="{{ asset('storage/profiles/'. $user->profile) }}" /> --> 
               <img src="/storage/profiles/{{$user->profile}}" style="height: 150px; width: 150px;">
 
             </div>

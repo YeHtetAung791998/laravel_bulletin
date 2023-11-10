@@ -107,9 +107,10 @@
                             
                             <div class="col-md-6">
                             @if($user->profile)
-                            <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/'. $user->profile) }}" />
+                            <!-- <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/'. $user->profile) }}" /> -->
+                            <img src="/storage/profiles/{{$user->profile}}" style="height: 200px; width: 200px;">
                             @else
-                            <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/default-profile.jpg') }}" />
+                            <!-- <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/default-profile.jpg') }}" /> -->
                             @endif
                             <input type="hidden" name="old_profile" value="{{$user->profile}}"/>
                                 @error('address')

@@ -122,7 +122,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" />
+                                <img src="/storage/profiles/{{session('uploadProfile')}}" style="height: 200px; width: 200px;">
+                                <!-- <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" /> -->
                             </div>
                         </div>
                         <div class="row mb-0">

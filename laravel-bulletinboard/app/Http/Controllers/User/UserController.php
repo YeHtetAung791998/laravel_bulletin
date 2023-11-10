@@ -73,7 +73,7 @@ class UserController extends Controller
         if ($request->hasFile('profile')) {
             $name = $request->file('profile')->getClientOriginalName();
             $fileName = time() . Auth::user()->id . '.' . $request->file('profile')->getClientOriginalExtension();
-            $request->file('profile')->storeAs('public/images/', $fileName);
+            $request->file('profile')->storeAs('profiles', $fileName);
         } else {
             $fileName = '';
             $name = '';

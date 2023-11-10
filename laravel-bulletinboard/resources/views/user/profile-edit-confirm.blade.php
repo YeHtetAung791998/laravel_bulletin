@@ -99,10 +99,12 @@
                             <input readonly id="profile" type="text" class="form-control hide-input" name="profile" required value="{{ session('ProfileName') }}" autocomplete="profile" readonly="readonly" />
                             @endif
                             @if(session('uploadProfile'))
-                                <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" />
+                            <img src="/storage/profiles/{{session('uploadProfile')}}" style="height: 150px; width: 150px;">
+                                <!-- <img style="height: 200px; width: 200px;" class="mt-2" src="{{ asset('storage/images/'. session('uploadProfile')) }}" /> -->
                             @else
                                @if(auth()->user()->profile)
-                               <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/'. auth()->user()->profile) }}" />
+                               <img src="/storage/profiles/{{auth()->user()->profile}}" style="height: 150px; width: 150px;">
+                               <!-- <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/'. auth()->user()->profile) }}" /> -->
                                @else
                                <img style="height: 150px; width: 150px;"  src="{{ asset('storage/images/default-profile.jpg') }}" />
                                @endif
